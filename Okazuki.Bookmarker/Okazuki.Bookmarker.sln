@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okazuki.Bookmarker", "Okazuki.Bookmarker\Okazuki.Bookmarker.csproj", "{D57F775F-3DD6-4B21-B073-3919BC46541B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|ARM.Build.0 = Debug|ARM
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|ARM.Deploy.0 = Debug|ARM
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|x64.ActiveCfg = Debug|x64
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|x64.Build.0 = Debug|x64
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|x64.Deploy.0 = Debug|x64
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|x86.ActiveCfg = Debug|x86
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|x86.Build.0 = Debug|x86
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Debug|x86.Deploy.0 = Debug|x86
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|ARM.ActiveCfg = Release|ARM
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|ARM.Build.0 = Release|ARM
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|ARM.Deploy.0 = Release|ARM
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|x64.ActiveCfg = Release|x64
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|x64.Build.0 = Release|x64
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|x64.Deploy.0 = Release|x64
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|x86.ActiveCfg = Release|x86
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|x86.Build.0 = Release|x86
+		{D57F775F-3DD6-4B21-B073-3919BC46541B}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

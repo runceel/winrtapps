@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="2f77f479-fb92-409f-9cc5-1183f8336f3f" Publisher="CN=Kazuki" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>ブックマーカー</DisplayName>
+    <PublisherDisplayName>Kazuki</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Okazuki.Bookmarker.App">
+      <VisualElements DisplayName="ブックマーカー" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="ブックマークアプリケーションです。" ForegroundText="light" BackgroundColor="purple">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="purple" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.shareTarget">
+          <ShareTarget>
+            <DataFormat>uri</DataFormat>
+          </ShareTarget>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
