@@ -132,7 +132,11 @@ namespace Okazuki.Bookmarker.DataModel
                 return;
             }
 
-            this.Categories = data;
+            this.Categories.Clear();
+            foreach (var category in data)
+            {
+                this.Categories.Add(category);
+            }
         }
     }
 }

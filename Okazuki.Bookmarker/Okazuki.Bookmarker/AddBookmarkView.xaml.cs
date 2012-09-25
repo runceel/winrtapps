@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Okazuki.Bookmarker.DataModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,6 +22,27 @@ namespace Okazuki.Bookmarker
         public AddBookmarkView()
         {
             this.InitializeComponent();
+        }
+
+        public string Title
+        {
+            get { return this.textBoxTitle.Text; }
+            set { this.textBoxTitle.Text = value; }
+        }
+
+        public string Uri
+        {
+            get { return this.textBoxUrl.Text; }
+            set { this.textBoxUrl.Text = value; }
+        }
+
+        private async void UserControl_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            var model = BookmarkerModel.GetDefault();
+            await model.LoadAsync();
+            this.comboBoxCategories.ItemsSource = model.Categories;
+            this.comboBoxCategories.SelectedItem = model.Categories.FirstOrDefault();
+
         }
     }
 }

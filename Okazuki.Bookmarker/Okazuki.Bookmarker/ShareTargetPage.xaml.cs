@@ -51,6 +51,10 @@ namespace Okazuki.Bookmarker
             this.DefaultViewModel["ShowImage"] = false;
             this.DefaultViewModel["Comment"] = String.Empty;
             this.DefaultViewModel["SupportsComment"] = true;
+
+            this.addBookmarkView.Title = shareProperties.Title;
+            this.addBookmarkView.Uri = (await this._shareOperation.Data.GetUriAsync()).ToString();
+
             Window.Current.Content = this;
             Window.Current.Activate();
 

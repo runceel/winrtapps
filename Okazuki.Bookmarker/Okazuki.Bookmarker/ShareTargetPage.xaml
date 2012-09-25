@@ -60,7 +60,7 @@
             </StackPanel>
 
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                <local:AddBookmarkView 
+                <local:AddBookmarkView x:Name="addBookmarkView" 
                     IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}"/>
             </Grid>
 
