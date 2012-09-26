@@ -61,7 +61,7 @@
 
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <local:AddBookmarkView x:Name="addBookmarkView" 
-                    IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}"/>
+                    IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}" AddClicked="ShareButton_Click"/>
             </Grid>
 
             <!-- 標準の共有ターゲット フッター -->

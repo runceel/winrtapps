@@ -409,6 +409,13 @@
         参照するスタイルのコメントを解除します (すべてのスタイルが必要なわけではありません)。 
     -->
 
+    <Style x:Key="CategoryAddAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="CategoryAddAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="カテゴリ追加"/>
+        <Setter Property="Content" Value="&#xE109;"/>
+    </Style>
+
+
     <!--
     
     <Style x:Key="SkipBackAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">

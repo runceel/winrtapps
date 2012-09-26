@@ -1,4 +1,5 @@
 ﻿using Okazuki.Bookmarker.DataModel;
+using Okazuki.UI.Flyouts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +50,13 @@ namespace Okazuki.Bookmarker
             var bookmark = e.ClickedItem as Bookmark;
             await Launcher.LaunchUriAsync(bookmark.Uri);
             var noWait = BookmarkerModel.GetDefault().SaveAsync();
+        }
+
+        private void buttonAddCategory_Click(object sender, RoutedEventArgs e)
+        {
+            var view = new CreateCategoryView();
+            var popup = FlyoutUtils.CreateFlyout(this.BottomAppBar, (Button)sender, view);
+            popup.IsOpen = true;
         }
     }
 }

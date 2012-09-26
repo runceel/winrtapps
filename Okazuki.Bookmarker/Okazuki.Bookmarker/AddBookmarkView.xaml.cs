@@ -24,6 +24,8 @@ namespace Okazuki.Bookmarker
             this.InitializeComponent();
         }
 
+        public event RoutedEventHandler AddClicked;
+
         public string Title
         {
             get { return this.textBoxTitle.Text; }
@@ -43,6 +45,56 @@ namespace Okazuki.Bookmarker
             this.comboBoxCategories.ItemsSource = model.Categories;
             this.comboBoxCategories.SelectedItem = model.Categories.FirstOrDefault();
 
+        }
+
+        public BookmarkCategory SelectedCategory
+        {
+            get
+            {
+                return (BookmarkCategory) comboBoxCategories.SelectedItem;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (this.AddClicked != null)
+            {
+                this.AddClicked(sender, e);
+            }
+        }
+
+        public bool Validate()
+        {
+            this.textBlockTitleErrorMessage.Text = string.Empty;
+            this.textBlockUriErrorMessage.Text = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(this.Title))
+            {
+                this.textBlockTitleErrorMessage.Text = "タイトルを入力してください";
+            }
+
+            var uri = default(Uri);
+            if (!System.Uri.TryCreate(this.Uri, UriKind.Absolute, out uri))
+            {
+                this.textBlockUriErrorMessage.Text = "URLを入力してください";
+            }
+
+            return string.IsNullOrEmpty(this.textBlockTitleErrorMessage.Text) &&
+                string.IsNullOrEmpty(this.textBlockUriErrorMessage.Text);
+        }
+
+        public Bookmark CreateBookmark()
+        {
+            if (!this.Validate())
+            {
+                throw new InvalidOperationException();
+            }
+
+            return new Bookmark
+            {
+                Title = this.Title,
+                Uri = new Uri(this.Uri)
+            };
         }
     }
 }

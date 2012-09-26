@@ -22,6 +22,20 @@
             IsSourceGrouped="true"
             ItemsPath="Bookmarks"/>
     </Page.Resources>
+	<common:LayoutAwarePage.BottomAppBar>
+		<AppBar>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal"/>
+				<StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+					<Button x:Name="buttonAddCategory" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource CategoryAddAppBarButtonStyle}" Click="buttonAddCategory_Click"/>
+				</StackPanel>
+			</Grid>
+		</AppBar>
+	</common:LayoutAwarePage.BottomAppBar>
 
     <!--
         このグリッドは 2 つの行を定義するページのルート パネルとして機能します:

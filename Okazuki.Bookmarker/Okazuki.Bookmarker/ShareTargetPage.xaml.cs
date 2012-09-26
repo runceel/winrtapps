@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Okazuki.Bookmarker.DataModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -74,15 +75,22 @@ namespace Okazuki.Bookmarker
         /// <param name="e">ボタンがどのようにクリックされたかを説明するイベント データ。</param>
         private void ShareButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!this.addBookmarkView.Validate())
+            {
+                return;
+            }
+
             this.DefaultViewModel["Sharing"] = true;
             this._shareOperation.ReportStarted();
 
-            // TODO: this._shareOperation.Data を使用して共有シナリオに適した
-            //       作業を実行します。通常は、カスタム ユーザー インターフェイス要素を介して
-            //       このページに追加されたカスタム ユーザー インターフェイス要素を介して
-            //       this.DefaultViewModel["Comment"]
+            var bookmark = this.addBookmarkView.CreateBookmark();
+            this.addBookmarkView.SelectedCategory.Bookmarks.Add(bookmark);
+            this.DefaultViewModel["Comment"] = string.Format("{0}を登録しました", bookmark.Title);
+
+            var noWaitTask = BookmarkerModel.GetDefault().SaveAsync();
 
             this._shareOperation.ReportCompleted();
         }
+
     }
 }

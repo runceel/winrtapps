@@ -10,13 +10,15 @@
     d:DesignWidth="420" Loaded="UserControl_Loaded_1">
     
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="登録" HorizontalAlignment="Right" Margin="0,237,10,0" VerticalAlignment="Top" Width="80" Height="38"/>
+        <Button Content="登録" HorizontalAlignment="Right" Margin="0,237,10,0" VerticalAlignment="Top" Width="80" Height="38" Click="Button_Click_1"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,95,0,0" TextWrapping="Wrap" Text="タイトル" VerticalAlignment="Top" Style="{StaticResource CaptionTextStyle}"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource CaptionTextStyle}" Text="URL" />
         <TextBox x:Name="textBoxTitle" Margin="30,125,10,0" TextWrapping="NoWrap" VerticalAlignment="Top"/>
         <TextBox x:Name="textBoxUrl" Margin="30,196,10,0" TextWrapping="NoWrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,20,0,0" TextWrapping="Wrap" Text="カテゴリ" VerticalAlignment="Top" Style="{StaticResource CaptionTextStyle}"/>
         <ComboBox x:Name="comboBoxCategories"  Margin="30,53,10,0" VerticalAlignment="Top" DisplayMemberPath="Title"/>
+        <TextBlock x:Name="textBlockTitleErrorMessage" HorizontalAlignment="Left" Margin="65,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource BaselineTextStyle}" Foreground="Red"/>
+        <TextBlock x:Name="textBlockUriErrorMessage" HorizontalAlignment="Left" Margin="63,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource BaselineTextStyle}" Foreground="Red"/>
 
     </Grid>
 </UserControl>
