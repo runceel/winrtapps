@@ -6,11 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="285"
+    MinWidth="420"
+    MinHeight="290"
+    d:DesignHeight="290"
     d:DesignWidth="420" Loaded="UserControl_Loaded_1">
     
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="登録" HorizontalAlignment="Right" Margin="0,237,10,0" VerticalAlignment="Top" Width="80" Height="38" Click="Button_Click_1"/>
+        <Button Content="決定" HorizontalAlignment="Right" Margin="0,237,10,0" VerticalAlignment="Top" Width="80" Height="38" Click="Button_Click_1"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,95,0,0" TextWrapping="Wrap" Text="タイトル" VerticalAlignment="Top" Style="{StaticResource CaptionTextStyle}"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource CaptionTextStyle}" Text="URL" />
         <TextBox x:Name="textBoxTitle" Margin="30,125,10,0" TextWrapping="NoWrap" VerticalAlignment="Top"/>

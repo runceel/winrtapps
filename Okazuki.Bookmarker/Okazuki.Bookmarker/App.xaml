@@ -34,14 +34,26 @@
             </DataTemplate>
             
             <DataTemplate x:Key="BookmarkLargeTemplate">
-                <Grid Height="110" Width="294" Margin="6">
+                <Grid Height="50" Width="294" Margin="6" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Border Background="{StaticResource TileBackgroundColorBrush}" Width="110" Height="110"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,-10,0,0">
-                        <TextBlock Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis"/>
+                    <Border Background="{StaticResource TileBackgroundColorBrush}" Width="110" Height="110" BorderThickness="0,0,100,0"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,10,0,0">
+                        <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top" Margin="0,0,5,0"/>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="CategoryZoomedOutTemplate">
+                <Grid Height="50" Width="294" Margin="6" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="{StaticResource TileBackgroundColorBrush}" Width="110" Height="110" BorderThickness="0,0,100,0"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,10,0,0">
+                        <TextBlock Text="{Binding Group.Title}" Style="{StaticResource TitleTextStyle}" TextWrapping="Wrap" TextTrimming="WordEllipsis" VerticalAlignment="Top" Margin="0,0,5,0"/>
                     </StackPanel>
                 </Grid>
             </DataTemplate>

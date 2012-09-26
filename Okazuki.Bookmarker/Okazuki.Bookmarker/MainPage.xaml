@@ -29,10 +29,17 @@
 					<ColumnDefinition/>
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
-				<StackPanel Orientation="Horizontal"/>
-				<StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-					<Button x:Name="buttonAddCategory" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource CategoryAddAppBarButtonStyle}" Click="buttonAddCategory_Click"/>
-				</StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="buttonEditBookmark" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource BookmarksEditAppBarButtonStyle}" Click="buttonEditBookmark_Click"/>
+                    <Button x:Name="buttonDeleteBookmark" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource BookmarkDeleteAppBarButtonStyle}" Click="buttonDeleteBookmark_Click"/>
+                    <Button x:Name="buttonPrevCategory" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource PreviousAppBarButtonStyle}" Click="buttonPrevCategory_Click"/>
+                    <Button x:Name="buttonNextCategory" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource NextAppBarButtonStyle}" Click="buttonNextCategory_Click"/>
+                    <Button x:Name="buttonDeleteCategory" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource CategoryDeleteAppBarButtonStyle}" Click="buttonDeleteCategory_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button x:Name="buttonAddCategory" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource CategoryAddAppBarButtonStyle}" Click="buttonAddCategory_Click"/>
+                    <Button x:Name="buttonAddBookmark" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource BookmarksAddAppBarButtonStyle}" Click="buttonAddBookmark_Click"/>
+                </StackPanel>
 			</Grid>
 		</AppBar>
 	</common:LayoutAwarePage.BottomAppBar>
@@ -49,39 +56,58 @@
         </Grid.RowDefinitions>
 
         <!-- ほとんどのビューステートで使用される水平スクロール グリッド-->
-        <GridView
-            x:Name="itemGridView"
-            AutomationProperties.AutomationId="ItemGridView"
-            AutomationProperties.Name="Grouped Items"
-            Grid.RowSpan="2"
-            Padding="116,137,40,46"
-            ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-            ItemTemplate="{StaticResource BookmarkLargeTemplate}"
-            SelectionMode="None"
-            IsSwipeEnabled="false" IsItemClickEnabled="True" ItemClick="BookmarkItem_Click">
+        <SemanticZoom x:Name="semanticZoom" Grid.Row="1" ViewChangeCompleted="semanticZoom_ViewChangeCompleted" ViewChangeStarted="semanticZoom_ViewChangeStarted">
+            <SemanticZoom.ZoomedInView>
+                <GridView
+                    x:Name="itemGridView"
+                    AutomationProperties.AutomationId="ItemGridView"
+                    AutomationProperties.Name="Grouped Items"
+                    Grid.RowSpan="2"
+                    Padding="116, 0,40,46"
+                    ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
+                    ItemTemplate="{StaticResource BookmarkLargeTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="itemGridView_SelectionChanged"
+                    IsSwipeEnabled="false" IsItemClickEnabled="True" ItemClick="BookmarkItem_Click">
 
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="1,0,0,6">
-                                <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
-                            </Grid>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                    <GroupStyle.Panel>
+                    <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0"/>
+                            <VirtualizingStackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
-                    </GroupStyle.Panel>
-                </GroupStyle>
-            </GridView.GroupStyle>
-        </GridView>
+                    </GridView.ItemsPanel>
+                    <GridView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="1,0,0,6" MinWidth="295">
+                                        <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0"/>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </GridView.GroupStyle>
+                </GridView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView
+                    x:Name="itemGridZoomedOutView"
+                    AutomationProperties.AutomationId="ItemGridView"
+                    AutomationProperties.Name="Grouped Items"
+                    Grid.RowSpan="2"
+                    Padding="116, 0,40,46"
+                    ItemsSource="{Binding CollectionGroups, Source={StaticResource groupedItemsViewSource}}"
+                    ItemTemplate="{StaticResource CategoryZoomedOutTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="itemGridView_SelectionChanged"
+                    IsSwipeEnabled="false" IsItemClickEnabled="True">
+                </GridView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
 
         <!-- スナップの場合のみ使用される垂直スクロール リスト -->
         <ListView

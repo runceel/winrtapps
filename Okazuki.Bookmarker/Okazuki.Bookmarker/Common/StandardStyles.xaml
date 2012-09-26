@@ -415,6 +415,38 @@
         <Setter Property="Content" Value="&#xE109;"/>
     </Style>
 
+    <Style x:Key="BookmarksAddAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="AddBookmarksAddAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="ブックマーク追加"/>
+        <Setter Property="Content" Value="&#xE12F;"/>
+    </Style>
+
+    <Style x:Key="BookmarksEditAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="EditAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="ブックマーク編集"/>
+        <Setter Property="Content" Value="&#xE104;"/>
+    </Style>
+    <Style x:Key="BookmarkDeleteAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="BookmarkDeleteAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="ブックマーク削除"/>
+        <Setter Property="Content" Value="&#xE106;"/>
+    </Style>
+
+    <Style x:Key="NextAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="NextAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="次へ"/>
+        <Setter Property="Content" Value="&#xE111;"/>
+    </Style>
+    <Style x:Key="PreviousAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PreviousAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="前へ"/>
+        <Setter Property="Content" Value="&#xE112;"/>
+    </Style>
+    <Style x:Key="CategoryDeleteAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="CategoryDeleteAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="カテゴリ削除"/>
+        <Setter Property="Content" Value="&#xE106;"/>
+    </Style>
 
     <!--
     

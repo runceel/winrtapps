@@ -138,5 +138,10 @@ namespace Okazuki.Bookmarker.DataModel
                 this.Categories.Add(category);
             }
         }
+
+        public BookmarkCategory GetCategoryByBookmark(Bookmark bookmark)
+        {
+            return this.Categories.FirstOrDefault(c => c.Bookmarks.Any(b => b.Id == bookmark.Id));
+        }
     }
 }

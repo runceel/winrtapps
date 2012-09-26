@@ -1,6 +1,7 @@
 ﻿using Okazuki.Bookmarker.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -42,16 +43,32 @@ namespace Okazuki.Bookmarker
         {
             var model = BookmarkerModel.GetDefault();
             await model.LoadAsync();
-            this.comboBoxCategories.ItemsSource = model.Categories;
-            this.comboBoxCategories.SelectedItem = model.Categories.FirstOrDefault();
+            if (this.comboBoxCategories.ItemsSource == null)
+            {
+                this.comboBoxCategories.ItemsSource = model.Categories;
+            }
 
+            if (this.comboBoxCategories.SelectedItem == null)
+            {
+                this.comboBoxCategories.SelectedItem = model.Categories.FirstOrDefault();
+            }
+        }
+
+        public ObservableCollection<BookmarkCategory> Categories
+        {
+            get { return this.comboBoxCategories.ItemsSource as ObservableCollection<BookmarkCategory>; }
+            set { this.comboBoxCategories.ItemsSource = value; }
         }
 
         public BookmarkCategory SelectedCategory
         {
             get
             {
-                return (BookmarkCategory) comboBoxCategories.SelectedItem;
+                return (BookmarkCategory)this.comboBoxCategories.SelectedItem;
+            }
+            set
+            {
+                this.comboBoxCategories.SelectedItem = value;
             }
         }
 
