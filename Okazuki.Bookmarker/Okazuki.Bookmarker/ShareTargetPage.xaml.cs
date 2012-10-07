@@ -84,7 +84,7 @@ namespace Okazuki.Bookmarker
             this._shareOperation.ReportStarted();
 
             var bookmark = this.addBookmarkView.CreateBookmark();
-            this.addBookmarkView.SelectedCategory.Bookmarks.Add(bookmark);
+            this.addBookmarkView.SelectedCategory.AddBookmark(bookmark);
             this.DefaultViewModel["Comment"] = string.Format("{0}を登録しました", bookmark.Title);
 
             var noWaitTask = BookmarkerModel.GetDefault().SaveAsync();

@@ -45,11 +45,17 @@ namespace Okazuki.Bookmarker
             var model = BookmarkerModel.GetDefault();
             await model.LoadAsync();
             this.DefaultViewModel["Groups"] = model.Categories;
+            this.groupedItemsViewSource.View.MoveCurrentTo(null);
         }
 
         private async void BookmarkItem_Click(object sender, ItemClickEventArgs e)
         {
             var bookmark = e.ClickedItem as Bookmark;
+            if (bookmark.Id == Guid.Empty)
+            {
+                return;
+            }
+
             await Launcher.LaunchUriAsync(bookmark.Uri);
             var noWait = BookmarkerModel.GetDefault().SaveAsync();
         }
@@ -97,8 +103,7 @@ namespace Okazuki.Bookmarker
                     return;
                 }
 
-                var bookmark = view.CreateBookmark();
-                view.SelectedCategory.Bookmarks.Add(bookmark);
+                model.AddBookmark(view.SelectedCategory.Id, view.CreateBookmark());
                 var nowait = model.SaveAsync();
                 popup.IsOpen = false;
             };
@@ -123,8 +128,6 @@ namespace Okazuki.Bookmarker
             {
                 if (groupedItemsViewSource.View.CurrentItem == null)
                 {
-                    this.BottomAppBar.IsSticky = false;
-                    this.BottomAppBar.IsOpen = false;
                     return;
                 }
 
@@ -135,8 +138,6 @@ namespace Okazuki.Bookmarker
             {
                 if (itemGridZoomedOutView.SelectedItem == null)
                 {
-                    this.BottomAppBar.IsSticky = false;
-                    this.BottomAppBar.IsOpen = false;
                     return;
                 }
 
@@ -144,15 +145,12 @@ namespace Okazuki.Bookmarker
                 this.buttonNextCategory.Visibility = Visibility.Visible;
                 this.buttonDeleteCategory.Visibility = Visibility.Visible;
             }
-
-            this.BottomAppBar.IsSticky = true;
-            this.BottomAppBar.IsOpen = true;
         }
 
         private void buttonEditBookmark_Click(object sender, RoutedEventArgs e)
         {
             var bookmark = groupedItemsViewSource.View.CurrentItem as Bookmark;
-            if (bookmark == null)
+            if (bookmark == null || bookmark.Id == Guid.Empty)
             {
                 return;
             }
@@ -187,13 +185,7 @@ namespace Okazuki.Bookmarker
 
                 bookmark.Title = view.Title;
                 bookmark.Uri = new Uri(view.Uri, UriKind.Absolute);
-                var newCategory = view.SelectedCategory;
-                if (currentCategory != newCategory)
-                {
-                    currentCategory.Bookmarks.Remove(bookmark);
-                    newCategory.Bookmarks.Add(bookmark);
-                }
-
+                model.ChangeCategory(view.SelectedCategory, bookmark);
                 var nowait = model.SaveAsync();
                 popup.IsOpen = false;
             };
@@ -209,14 +201,7 @@ namespace Okazuki.Bookmarker
                 return;
             }
 
-            if (model.Categories.First() == category)
-            {
-                return;
-            }
-
-            var currentIndex = model.Categories.IndexOf(category);
-            model.Categories.RemoveAt(currentIndex);
-            model.Categories.Insert(currentIndex - 1, category);
+            this.itemGridZoomedOutView.SelectedIndex = model.MovePrevCategory(category);
             var nowait = model.SaveAsync();
         }
 
@@ -229,14 +214,7 @@ namespace Okazuki.Bookmarker
                 return;
             }
 
-            if (model.Categories.Last() == category)
-            {
-                return;
-            }
-
-            var currentIndex = model.Categories.IndexOf(category);
-            model.Categories.RemoveAt(currentIndex);
-            model.Categories.Insert(currentIndex + 1, category);
+            this.itemGridZoomedOutView.SelectedIndex = model.MoveNextCategory(category);
             var nowait = model.SaveAsync();
         }
 
@@ -268,15 +246,9 @@ namespace Okazuki.Bookmarker
             }
 
             var currentCategory = model.GetCategoryByBookmark(selectedBookmark);
-            currentCategory.Bookmarks.Remove(selectedBookmark);
+            currentCategory.RemoveBookmark(selectedBookmark);
             var nowait = model.SaveAsync();
         }
-
-        private void semanticZoom_ViewChangeStarted(object sender, SemanticZoomViewChangedEventArgs e)
-        {
-
-        }
-
 
     }
 }

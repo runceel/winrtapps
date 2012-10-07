@@ -33,5 +33,14 @@ namespace Okazuki.Bookmarker.DataModel
             set { this.SetProperty(ref this.uri, value); }
         }
 
+        public static Bookmark CreateEmpty()
+        {
+            return new Bookmark
+            {
+                Id = Guid.Empty,
+                Title = "ブックマークを追加してください",
+                Uri = new Uri("about:blank")
+            };
+        }
     }
 }

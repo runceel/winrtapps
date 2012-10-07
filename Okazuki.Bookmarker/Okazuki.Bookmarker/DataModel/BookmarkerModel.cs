@@ -143,5 +143,53 @@ namespace Okazuki.Bookmarker.DataModel
         {
             return this.Categories.FirstOrDefault(c => c.Bookmarks.Any(b => b.Id == bookmark.Id));
         }
+
+        public bool AddBookmark(Guid categoryId, Bookmark bookmark)
+        {
+            var category = this.Categories.SingleOrDefault(c => c.Id == categoryId);
+            if (category == null)
+            {
+                return false;
+            }
+
+            category.AddBookmark(bookmark);
+            return true;
+        }
+
+        public void ChangeCategory(BookmarkCategory newCategory, Bookmark bookmark)
+        {
+            var currentCategory = this.GetCategoryByBookmark(bookmark);
+            if (currentCategory != newCategory)
+            {
+                currentCategory.RemoveBookmark(bookmark);
+                newCategory.AddBookmark(bookmark);
+            }
+        }
+
+        public int MoveNextCategory(BookmarkCategory targetCategory)
+        {
+            if (targetCategory == this.categories.Last())
+            {
+                return this.categories.Count - 1;
+            }
+
+            var index = this.categories.IndexOf(targetCategory);
+            this.categories.RemoveAt(index);
+            this.categories.Insert(++index, targetCategory);
+            return index;
+        }
+
+        public int MovePrevCategory(BookmarkCategory targetCategory)
+        {
+            if (targetCategory == this.categories.First())
+            {
+                return 0;
+            }
+
+            var index = this.categories.IndexOf(targetCategory);
+            this.categories.RemoveAt(index);
+            this.categories.Insert(--index, targetCategory);
+            return index;
+        }
     }
 }

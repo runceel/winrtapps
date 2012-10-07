@@ -26,7 +26,7 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
-    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="Purple" />
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FF2E1C47" />
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
 

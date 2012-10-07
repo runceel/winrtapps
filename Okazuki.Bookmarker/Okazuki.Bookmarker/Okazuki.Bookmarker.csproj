@@ -12,7 +12,9 @@
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Okazuki.Bookmarker_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Okazuki.Bookmarker_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>DE68ABDCFB445A426D07B4499B9A8EE87CA4CFEB</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -131,6 +133,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
+    <None Include="Okazuki.Bookmarker_StoreKey.pfx" />
     <None Include="Okazuki.Bookmarker_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -139,10 +142,8 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\LightGray.png" />
-    <Content Include="Assets\MediumGray.png" />
-    <Content Include="Assets\DarkGray.png" />
     <Content Include="Assets\WideLogo.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Page Include="CreateCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
