@@ -40,6 +40,7 @@ namespace Okazuki.Bookmarker
         /// <param name="args">Windows と連携して処理するために使用されるアクティベーション データ。</param>
         public async void Activate(ShareTargetActivatedEventArgs args)
         {
+            await BookmarkerModel.GetDefault().LoadAsync();
             this._shareOperation = args.ShareOperation;
 
             // ビュー モデルを使用して、共有されるコンテンツのメタデータを通信します
@@ -73,8 +74,13 @@ namespace Okazuki.Bookmarker
         /// </summary>
         /// <param name="sender">共有を開始するときに使用される Button インスタンス。</param>
         /// <param name="e">ボタンがどのようにクリックされたかを説明するイベント データ。</param>
-        private void ShareButton_Click(object sender, RoutedEventArgs e)
+        private async void ShareButton_Click(object sender, RoutedEventArgs e)
         {
+            if (this.addBookmarkView.SelectedCategory == null)
+            {
+                return;
+            }
+
             if (!this.addBookmarkView.Validate())
             {
                 return;
@@ -85,9 +91,9 @@ namespace Okazuki.Bookmarker
 
             var bookmark = this.addBookmarkView.CreateBookmark();
             this.addBookmarkView.SelectedCategory.AddBookmark(bookmark);
+            await BookmarkerModel.GetDefault().SaveAsync();
             this.DefaultViewModel["Comment"] = string.Format("{0}を登録しました", bookmark.Title);
 
-            var noWaitTask = BookmarkerModel.GetDefault().SaveAsync();
 
             this._shareOperation.ReportCompleted();
         }
