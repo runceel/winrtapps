@@ -8,6 +8,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -35,6 +37,17 @@ namespace Okazuki.Bookmarker
             this.Suspending += OnSuspending;
         }
 
+        private void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            args.Request.ApplicationCommands.Add(new SettingsCommand(
+                Guid.NewGuid(),
+                "プライバシーポリシー",
+                async (_) =>
+                {
+                    await Launcher.LaunchUriAsync(new Uri("https://gist.github.com/3878023", UriKind.Absolute));
+                }));
+        }
+
         /// <summary>
         /// アプリケーションがエンド ユーザーによって正常に起動されたときに呼び出されます。他のエントリ ポイントは、
         /// アプリケーションが特定のファイルを開くために呼び出されたときに
@@ -47,6 +60,8 @@ namespace Okazuki.Bookmarker
 
             if (rootFrame == null)
             {
+                SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
+                
                 // ナビゲーション コンテキストとして動作するフレームを作成し、最初のページに移動します
                 rootFrame = new Frame();
                 //フレームを SuspensionManager キーに関連付けます                                

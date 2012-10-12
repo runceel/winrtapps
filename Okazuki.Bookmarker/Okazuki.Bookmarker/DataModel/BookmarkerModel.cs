@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -14,6 +15,8 @@ namespace Okazuki.Bookmarker.DataModel
 {
     public class BookmarkerModel : BindableBase
     {
+        private readonly object SyncRoot = new object();
+
         private static readonly string StoreFileName = "_applicationData.xml";
 
         private static readonly BookmarkerModel defaultInstance = new BookmarkerModel();
@@ -38,11 +41,19 @@ namespace Okazuki.Bookmarker.DataModel
 
         public async Task SaveAsync()
         {
-            var file = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
-                StoreFileName, CreationCollisionOption.ReplaceExisting);
-            using (var s = await file.OpenStreamForWriteAsync())
+            try
             {
-                await SaveAsync(s);
+                Monitor.Enter(this.SyncRoot);
+                var file = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
+                    StoreFileName, CreationCollisionOption.ReplaceExisting);
+                using (var s = await file.OpenStreamForWriteAsync())
+                {
+                    await SaveAsync(s);
+                }
+            }
+            finally
+            {
+                Monitor.Exit(this.SyncRoot);
             }
         }
 
