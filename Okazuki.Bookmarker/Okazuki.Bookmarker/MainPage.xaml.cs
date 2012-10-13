@@ -48,7 +48,7 @@ namespace Okazuki.Bookmarker
             this.groupedItemsViewSource.View.MoveCurrentTo(null);
         }
 
-        private async void BookmarkItem_Click(object sender, ItemClickEventArgs e)
+        private void BookmarkItem_Click(object sender, ItemClickEventArgs e)
         {
             var bookmark = e.ClickedItem as Bookmark;
             if (bookmark.Id == Guid.Empty)
@@ -56,8 +56,7 @@ namespace Okazuki.Bookmarker
                 return;
             }
 
-            await Launcher.LaunchUriAsync(bookmark.Uri);
-            var noWait = BookmarkerModel.GetDefault().SaveAsync();
+            this.Frame.Navigate(typeof(BrowsePage), bookmark.Id.ToString());
         }
 
         private void buttonAddCategory_Click(object sender, RoutedEventArgs e)

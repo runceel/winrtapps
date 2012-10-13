@@ -108,6 +108,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BrowsePage.xaml.cs">
+      <DependentUpon>BrowsePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateCategoryView.xaml.cs">
       <DependentUpon>CreateCategoryView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\WideLogo.png" />
     <None Include="Package.StoreAssociation.xml" />
+    <Page Include="BrowsePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateCategoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

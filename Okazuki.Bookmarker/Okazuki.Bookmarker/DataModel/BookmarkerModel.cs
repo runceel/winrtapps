@@ -202,5 +202,12 @@ namespace Okazuki.Bookmarker.DataModel
             this.categories.Insert(--index, targetCategory);
             return index;
         }
+
+        public Bookmark GetBookmarkById(Guid id)
+        {
+            return this.Categories
+                .SelectMany(c => c.Bookmarks)
+                .SingleOrDefault(b => b.Id == id);
+        }
     }
 }
