@@ -1,5 +1,6 @@
 ﻿using Okazuki.Bookmarker.Common;
 using Okazuki.Bookmarker.DataModel;
+using Okazuki.Bookmarker.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,6 +65,7 @@ namespace Okazuki.Bookmarker
                 
                 // ナビゲーション コンテキストとして動作するフレームを作成し、最初のページに移動します
                 rootFrame = new Frame();
+                DispatcherHolder.InitializeIfNeeded(rootFrame);
                 //フレームを SuspensionManager キーに関連付けます                                
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
 
@@ -84,6 +86,7 @@ namespace Okazuki.Bookmarker
                 // フレームを現在のウィンドウに配置します
                 Window.Current.Content = rootFrame;
             }
+
             if (rootFrame.Content == null)
             {
                 // ナビゲーション スタックが復元されていない場合、最初のページに移動します。
@@ -117,9 +120,10 @@ namespace Okazuki.Bookmarker
         /// 共有操作のターゲットとしてアプリケーションがアクティブにされたときに呼び出されます。
         /// </summary>
         /// <param name="args">アクティベーション要求の詳細。</param>
-        protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs args)
+        protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
-            var shareTargetPage = new Okazuki.Bookmarker.ShareTargetPage();
+            var shareTargetPage = new ShareTargetPage();
+            DispatcherHolder.InitializeIfNeeded(shareTargetPage);
             shareTargetPage.Activate(args);
         }
     }

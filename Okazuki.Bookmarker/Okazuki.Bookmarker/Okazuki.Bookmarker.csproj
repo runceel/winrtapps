@@ -130,6 +130,7 @@
     <Compile Include="ShareTargetPage.xaml.cs">
       <DependentUpon>ShareTargetPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\DispatcherHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

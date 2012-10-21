@@ -1,11 +1,14 @@
 ﻿using Okazuki.Bookmarker.DataModel;
+using Okazuki.Bookmarker.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,7 +30,9 @@ namespace Okazuki.Bookmarker
         /// <summary>
         /// 共有操作について、Windows と通信するためのチャネルを提供します。
         /// </summary>
-        private Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation _shareOperation;
+        private ShareOperation _shareOperation;
+
+        private BookmarkerModel currentModel;
 
         public ShareTargetPage()
         {
@@ -40,7 +45,9 @@ namespace Okazuki.Bookmarker
         /// <param name="args">Windows と連携して処理するために使用されるアクティベーション データ。</param>
         public async void Activate(ShareTargetActivatedEventArgs args)
         {
-            await BookmarkerModel.GetDefault().LoadAsync();
+            this.currentModel = BookmarkerModel.GetDefault();
+            await this.currentModel.LoadAsync();
+
             this._shareOperation = args.ShareOperation;
 
             // ビュー モデルを使用して、共有されるコンテンツのメタデータを通信します
@@ -90,10 +97,13 @@ namespace Okazuki.Bookmarker
             this._shareOperation.ReportStarted();
 
             var bookmark = this.addBookmarkView.CreateBookmark();
-            this.addBookmarkView.SelectedCategory.AddBookmark(bookmark);
-            await BookmarkerModel.GetDefault().SaveAsync();
+            var categoryId = this.addBookmarkView.SelectedCategory.Id;
+            await DispatcherHolder.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                this.currentModel.AddBookmark(categoryId, bookmark);
+                await this.currentModel.SaveAsync();
+            });
             this.DefaultViewModel["Comment"] = string.Format("{0}を登録しました", bookmark.Title);
-
 
             this._shareOperation.ReportCompleted();
         }
