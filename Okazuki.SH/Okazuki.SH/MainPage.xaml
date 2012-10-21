@@ -1,0 +1,215 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="Okazuki.SH.MainPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Okazuki.SH"
+    xmlns:common="using:Okazuki.SH.Common"
+    xmlns:datamodel="using:Okazuki.SH.DataModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <common:LayoutAwarePage.Resources>
+        <local:CmConverter x:Key="CmConverter"/>
+        <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
+        <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </common:LayoutAwarePage.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Style="{StaticResource LayoutRootStyle}" DataContext="{Binding MainPageViewModel}" d:DataContext="{d:DesignInstance Type=datamodel:MainPageViewModel, IsDesignTimeCreatable=True}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+        </Grid>
+        <StackPanel x:Name="stackPanel1" Orientation="Vertical" Grid.Row="1" Margin="120,0,50,0">
+        	<StackPanel x:Name="stackPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+        		<TextBlock x:Uid="MainPage_textBlockHeight" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height :" VerticalAlignment="Top" Style="{StaticResource TitleTextStyle}" Margin="0,0,5,0"/>
+        		<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Height, Mode=TwoWay}" VerticalAlignment="Top" Width="73" TextAlignment="Right" Margin="0,0,5,0"/>
+        		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cm" VerticalAlignment="Top" Style="{StaticResource BaselineTextStyle}"/>
+        		<TextBlock TextWrapping="Wrap" Text="Please input number." Style="{StaticResource BaselineTextStyle}" Margin="10,0,0,0" Foreground="#DEBF0000" Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+        	</StackPanel>
+        	<Slider Maximum="300" Minimum="10" Value="{Binding Height, Mode=TwoWay}"/>
+        </StackPanel>
+        <Grid x:Name="grid" Grid.Row="2" Margin="0,0,0,50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Viewbox x:Name="viewbox" HorizontalAlignment="Left" MinWidth="300" MaxHeight="500" MaxWidth="650" VerticalAlignment="Bottom" Margin="120,0,0,0" >
+                <Viewbox x:Name="Group" Width="715.676" Height="520.631">
+                    <Canvas Width="715.676" Height="520.631">
+                        <Path x:Name="Path" Width="627.555" Height="53.2314" Canvas.Left="0" Canvas.Top="67.5079" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 35.8777,117.69C 23.8757,117.174 11.9168,116.731 0,116.317L 0,72.5184C 6.84781,72.4149 13.6959,72.3261 20.5444,72.2538C 73.1921,71.6976 125.855,72.6429 178.502,72.0214C 267.273,70.9735 356.006,68.1911 444.784,67.6065C 471.322,67.4318 497.868,67.4544 524.398,67.963C 538.451,68.2324 552.503,68.6382 566.536,69.2863C 576.88,69.7641 587.218,70.3708 597.526,71.2002C 605.338,71.8288 614.022,71.89 620.467,75.3781C 623.113,76.8103 625.282,78.9649 626.403,81.3148C 628.184,85.0473 627.702,89.4273 626.304,93.2569C 622.236,104.398 610.438,115.284 596.343,119.045C 587.97,121.279 578.691,120.313 569.839,120.366C 554.039,120.46 538.239,120.457 522.439,120.437C 465.7,120.367 408.96,120.24 352.221,120.261C 306.317,120.278 260.414,120.346 214.51,120.446C 190.182,120.499 165.851,120.939 141.525,120.631C 117.615,120.328 93.5445,119.638 69.5281,118.825"/>
+                        <Viewbox x:Name="Group_0" Width="62.8585" Height="400.469" Canvas.Left="149.225" Canvas.Top="120.131">
+                            <Canvas Width="62.8585" Height="400.469">
+                                <Viewbox x:Name="Group_1" Width="26.0834" Height="400.469" Canvas.Left="36.7751" Canvas.Top="3.8147e-006">
+                                    <Canvas Width="26.0834" Height="400.469">
+                                        <Viewbox x:Name="Group_2" Width="2.96045" Height="334.876" Canvas.Left="11.5457" Canvas.Top="40.2354">
+                                            <Canvas Width="2.96045" Height="334.876">
+                                                <Path x:Name="Line" Width="0" Height="334.556" Canvas.Left="1.45444" Canvas.Top="0.264618" Stretch="Fill" Data="F1 M 1.45444,0.264618L 1.45444,334.82"/>
+                                                <Path x:Name="Path_3" Width="2.96045" Height="334.876" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 2.96045,0C 2.96045,0.883331 2.96045,333.993 2.96045,334.876L 0,334.876C 0,333.993 0,0.883331 0,0L 2.96045,0 Z "/>
+                                            </Canvas>
+                                        </Viewbox>
+                                        <Path x:Name="Path_4" Width="26" Height="41" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Fill="#FFFFFFFF" Data="F1 M 25.5,40.5C 21.3334,34.6667 17.1667,28.8334 15.0834,22.1667C 13,15.5 13,8 13,0.5C 13,8 13,15.5 10.9167,22.1667C 8.83337,28.8334 4.66667,34.6667 0.5,40.5L 25.5,40.5 Z "/>
+                                        <Path x:Name="Path_5" Width="26" Height="40.0001" Canvas.Left="0.083313" Canvas.Top="360.469" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Fill="#FFFFFFFF" Data="F1 M 0.583313,360.969C 4.74998,366.802 8.91663,372.635 10.9999,379.135C 13.0833,385.635 13.0833,392.802 13.0832,399.969C 13.0833,392.802 13.0833,385.635 15.1666,379.135C 17.25,372.635 21.4167,366.802 25.5834,360.969L 0.583313,360.969 Z "/>
+                                    </Canvas>
+                                </Viewbox>
+                                <TextBlock x:Name="TextBlock" TextAlignment="Left" FontFamily="Meiryo UI" FontSize="31.5" Width="Auto" Height="Auto" Canvas.Left="0" Canvas.Top="0" Text="{Binding SittingHeight.TableHeight, Converter={StaticResource CmConverter}, Mode=OneWay}">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <MatrixTransform Matrix="0,-1.33333,1.33333,0,-12.18,240.5"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+							<Run Text="660" Foreground="#FFFFFFFF"/>
+                                </TextBlock>
+                            </Canvas>
+                        </Viewbox>
+                        <Viewbox x:Name="Group_6" Width="75.0763" Height="400.938" Canvas.Left="368.08" Canvas.Top="119.626">
+                            <Canvas Width="75.0763" Height="400.938">
+                                <TextBlock x:Name="TextBlock_7" TextAlignment="Left" FontFamily="Meiryo UI" FontSize="31.5" Width="Auto" Height="Auto" Canvas.Left="0" Canvas.Top="0" Text="{Binding SittingHeight.ChairHeight, Converter={StaticResource CmConverter}}">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <MatrixTransform Matrix="0,-1.33333,1.33333,0,-12.18,321.005"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+							<Run Text="400" Foreground="#FFFFFFFF"/>
+                                </TextBlock>
+                                <TextBlock x:Name="TextBlock_8" TextAlignment="Left" FontFamily="Meiryo UI" FontSize="31.5" Width="Auto" Height="Auto" Canvas.Left="0" Canvas.Top="0" Text="{Binding SittingHeight.MarginHeight, Converter={StaticResource CmConverter}}">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <MatrixTransform Matrix="0,-1.33333,1.33333,0,-12.18,121.005"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+							<Run Text="260" Foreground="#FFFFFFFF"/>
+                                </TextBlock>
+                                <Viewbox x:Name="Group_9" Width="26.1666" Height="161" Canvas.Left="48.7326" Canvas.Top="3.8147e-006">
+                                    <Canvas Width="26.1666" Height="161">
+                                        <Viewbox x:Name="Group_10" Width="2.96045" Height="89.5267" Canvas.Left="11.7122" Canvas.Top="40.1808">
+                                            <Canvas Width="2.96045" Height="89.5267">
+                                                <Path x:Name="Line_11" Width="0" Height="89.441" Canvas.Left="1.45444" Canvas.Top="0.0707703" Stretch="Fill" Data="F1 M 1.45444,0.0707703L 1.45444,89.5118"/>
+                                                <Path x:Name="Path_12" Width="2.96045" Height="89.5267" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 2.96045,0L 2.96045,0.0707703L 2.96045,89.5118L 2.96045,89.5267L 0,89.5267L 0,89.5118L 0,0.0707703L 0,0L 2.96045,0 Z "/>
+                                            </Canvas>
+                                        </Viewbox>
+                                        <Path x:Name="Path_13" Width="26" Height="40.7515" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Fill="#FFFFFFFF" Data="F1 M 25.5,40.2515C 21.3334,34.4544 17.1667,28.6573 15.0834,22.0321C 13,15.4068 13,7.95343 13,0.5C 13,7.95343 13,15.4068 10.9167,22.0321C 8.83337,28.6573 4.66666,34.4544 0.5,40.2515L 25.5,40.2515 Z "/>
+                                        <Path x:Name="Path_14" Width="26" Height="40.7516" Canvas.Left="0.166534" Canvas.Top="120.248" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Fill="#FFFFFFFF" Data="F1 M 0.666534,120.748C 4.83319,126.546 8.99982,132.343 11.0832,138.968C 13.1665,145.593 13.1665,153.047 13.1665,160.5C 13.1665,153.047 13.1665,145.593 15.2499,138.968C 17.3332,132.343 21.4999,126.546 25.6666,120.748L 0.666534,120.748 Z "/>
+                                    </Canvas>
+                                </Viewbox>
+                                <Viewbox x:Name="Group_15" Width="26.1667" Height="239.921" Canvas.Left="48.9095" Canvas.Top="161.017">
+                                    <Canvas Width="26.1667" Height="239.921">
+                                        <Viewbox x:Name="Group_16" Width="2.96045" Height="180.509" Canvas.Left="11.6603" Canvas.Top="33.1306">
+                                            <Canvas Width="2.96045" Height="180.509">
+                                                <Path x:Name="Line_17" Width="0" Height="180.337" Canvas.Left="1.45444" Canvas.Top="0.142578" Stretch="Fill" Data="F1 M 1.45444,0.142578L 1.45444,180.479"/>
+                                                <Path x:Name="Path_18" Width="2.96045" Height="180.51" Canvas.Left="0" Canvas.Top="-6.10352e-005" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 2.96045,-6.10352e-005C 2.96045,0.713989 2.96045,179.795 2.96045,180.509L 0,180.509C 0,179.795 0,0.713989 0,-6.10352e-005L 2.96045,-6.10352e-005 Z "/>
+                                            </Canvas>
+                                        </Viewbox>
+                                        <Path x:Name="Path_19" Width="26" Height="40.9868" Canvas.Left="0" Canvas.Top="-2.67029e-005" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Fill="#FFFFFFFF" Data="F1 M 25.5,40.4867C 21.3334,34.6553 17.1667,28.8239 15.0834,22.1595C 13.0001,15.495 13,7.9975 13,0.499973C 13,7.9975 13.0001,15.495 10.9167,22.1595C 8.83337,28.8239 4.66666,34.6553 0.5,40.4867L 25.5,40.4867 Z "/>
+                                        <Path x:Name="Path_20" Width="26" Height="40.9868" Canvas.Left="0.166718" Canvas.Top="198.934" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Fill="#FFFFFFFF" Data="F1 M 0.666718,199.434C 4.83337,205.265 9.00003,211.097 11.0834,217.761C 13.1667,224.426 13.1667,231.923 13.1667,239.421C 13.1667,231.923 13.1667,224.426 15.25,217.761C 17.3334,211.097 21.5001,205.265 25.6667,199.434L 0.666718,199.434 Z "/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Canvas>
+                        </Viewbox>
+                        <Path x:Name="Path_21" Width="282.373" Height="520.367" Canvas.Left="432.627" Canvas.Top="0.263282" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 483.217,496.887C 485.088,500.037 485.665,506.474 484.443,513.627L 483.386,520.631L 469.552,520.631L 470.937,511.319C 472.163,504.141 474.858,498.245 477.682,495.902C 481.425,459.185 486.971,422.616 493.256,386.245C 496.092,369.832 498.977,353.428 501.806,337.014C 501.981,335.997 502.095,334.896 502.213,333.788C 497.5,333.384 492.777,332.93 488.042,332.438C 483.523,331.97 471.125,328.464 467.203,326.646C 457.671,322.228 450.657,314.053 444.453,303.646C 441.118,298.052 432.627,280.631 432.627,280.631L 443.64,280.631C 448.321,281.113 572.661,280.631 602.388,281.027C 623.069,281.303 642.234,269.753 654.957,254.807C 668.005,238.801 673.022,213.967 673.719,188.236C 674.586,156.253 670.943,121.955 666.497,87.6173C 664.798,74.494 662.849,61.2818 660.878,48.0641C 659.647,39.8107 658.197,31.3583 658.546,23.8021C 658.681,20.885 659.028,18.0597 659.757,15.5278C 660.257,13.7902 661.294,12.4124 661.369,10.4006C 661.468,7.74274 659.529,4.099 660.109,1.74377C 660.514,0.0999756 662.767,0 664.614,0.599609C 668.672,1.91724 673.081,7.35291 675.509,11.9218C 679.396,19.2328 681.927,26.7896 684.311,34.1788C 690.679,53.9138 695.389,73.4588 699.626,92.8099C 707.211,127.456 712.907,161.874 714.556,194.445C 715.676,216.582 714.801,238.087 710.537,257.131C 706.656,271.439 700.693,284.382 692.646,294.971C 679.896,311.033 661.821,321.619 641.758,327.762C 642.931,330.563 643.08,334.221 643.654,337.174C 646.963,354.2 650.335,371.213 653.652,388.236C 660.601,423.905 666.793,459.804 671.148,495.898C 673.761,498.586 676.225,504.036 677.402,510.555C 677.458,510.866 679.292,520.631 679.292,520.631L 665.261,520.631C 665.261,520.631 664.017,514.18 663.773,512.994C 662.541,507.001 662.761,501.461 664.01,497.941C 655.5,465.94 648.474,433.525 642.177,401.037C 637.663,377.746 630.422,354.751 628.828,331.121C 598.227,337.937 563.874,337.7 529.413,335.767C 524.344,335.483 519.257,335.15 514.197,334.746C 512.483,356.215 506.729,377.3 503.069,398.586C 497.406,431.527 491.056,464.408 483.217,496.887 Z "/>
+                        <Path x:Name="Path_22" Width="51.0572" Height="415.141" Canvas.Left="15.5088" Canvas.Top="105.489" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 33.9639,520.631L 15.6701,520.611C 15.4574,517.232 15.4496,513.578 15.6794,509.779C 16.5097,496.05 20.1798,484.727 24.4438,481.551C 25.2423,457.117 26.2233,432.664 27.7472,408.242C 31.0586,355.171 36.1726,302.227 40.8627,249.261C 43.5826,218.544 46.3244,187.829 49.0644,157.114C 50.0113,146.499 50.9472,135.882 51.9113,125.269C 52.2146,121.93 52.5167,118.591 52.8541,115.256C 53.0826,112.997 52.9277,110.567 53.9331,108.531C 55.4434,106.232 59.0038,105.006 61.6743,105.668C 63.762,106.185 65.7589,108.153 66.2119,110.256C 67.1384,114.557 65.9932,119.056 65.6498,123.443C 65.0011,131.728 64.2771,140.008 63.5578,148.287C 60.8538,179.414 58.067,210.533 55.2665,241.651C 50.3956,295.772 45.953,349.945 39.7269,403.927C 36.7283,429.926 33.1004,455.848 29.1564,481.572C 33.2493,484.562 35.821,496.914 34.9456,511.389C 34.7502,514.619 34.3977,517.716 33.9639,520.631 Z "/>
+                        <Path x:Name="Path_23" Width="52.5678" Height="409.437" Canvas.Left="73.4666" Canvas.Top="111.194" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 125.875,520.631L 107.802,520.631C 107.23,517.75 106.739,514.616 106.441,511.392C 105.185,497.771 107.062,486.008 110.784,482.02C 107.313,458.46 103.984,434.892 101.18,411.245C 95.0188,359.287 90.6488,307.088 85.8597,254.955C 83.0821,224.719 80.3263,194.48 77.5688,164.241C 76.6132,153.762 75.6465,143.284 74.708,132.802C 74.3827,129.169 74.0524,125.537 73.7761,121.899C 73.6246,119.905 73.21,117.825 73.6956,115.896C 74.7471,113.099 78.0141,111.04 80.7613,111.203C 82.8601,111.328 85.0902,112.97 86.0086,115.05C 87.7905,119.085 87.4357,123.889 87.8915,128.347C 88.7267,136.518 89.4875,144.697 90.2527,152.875C 93.1187,183.507 95.9024,214.149 98.6721,244.792C 103.487,298.067 108.732,351.313 112.191,404.716C 113.844,430.225 114.876,455.777 115.761,481.344C 120.262,484.282 124.409,495.695 125.693,509.616C 126.05,513.488 126.154,517.209 125.875,520.631 Z "/>
+                    </Canvas>
+                </Viewbox>
+            </Viewbox>
+            <Rectangle Height="10" Fill="White" Grid.Row="1" Margin="10,0" />
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="stackPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                	<Thickness>0,10,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="stackPanel1">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Thickness>40,0</Thickness>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="viewbox">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Thickness>40,0,0,0</Thickness>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="stackPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                	<Thickness>0,10,0,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="grid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,47,0,36</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="viewbox">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Thickness>10,0</Thickness>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="stackPanel1">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Thickness>10,0</Thickness>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>
