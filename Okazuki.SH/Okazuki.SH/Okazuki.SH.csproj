@@ -12,7 +12,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Okazuki.SH_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Okazuki.SH_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>68FE3D530621A8363F4693302DC40612B8CD81FA</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -128,6 +130,7 @@
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
     <None Include="MultilingualResources\日本語 %28日本%29.xlf" />
+    <None Include="Okazuki.SH_StoreKey.pfx" />
     <None Include="Okazuki.SH_TemporaryKey.pfx" />
     <PRIResource Include="strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -136,9 +139,8 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\LightGray.png" />
-    <Content Include="Assets\MediumGray.png" />
-    <Content Include="Assets\DarkGray.png" />
+    <Content Include="Assets\WideLogo.png" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

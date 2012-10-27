@@ -18,7 +18,7 @@
 
             <!--アプリケーション固有のリソース -->
 
-            <x:String x:Key="AppName">sitting height</x:String>
+            <x:String x:Key="AppName">SH</x:String>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -39,13 +39,13 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
         <StackPanel x:Name="stackPanel1" Orientation="Vertical" Grid.Row="1" Margin="120,0,50,0">
-        	<StackPanel x:Name="stackPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-        		<TextBlock x:Uid="MainPage_textBlockHeight" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height :" VerticalAlignment="Top" Style="{StaticResource TitleTextStyle}" Margin="0,0,5,0"/>
-        		<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Height, Mode=TwoWay}" VerticalAlignment="Top" Width="73" TextAlignment="Right" Margin="0,0,5,0"/>
-        		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cm" VerticalAlignment="Top" Style="{StaticResource BaselineTextStyle}"/>
-        		<TextBlock TextWrapping="Wrap" Text="Please input number." Style="{StaticResource BaselineTextStyle}" Margin="10,0,0,0" Foreground="#DEBF0000" Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
-        	</StackPanel>
-        	<Slider Maximum="300" Minimum="10" Value="{Binding Height, Mode=TwoWay}"/>
+        	<StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Orientation="Horizontal">
+        		<TextBlock x:Uid="MainPage_textBlockHeight" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height :" VerticalAlignment="Bottom" Style="{StaticResource TitleTextStyle}" Margin="0,0,5,0"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Height}" Style="{StaticResource GroupHeaderTextStyle}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="cm" VerticalAlignment="Bottom" Style="{StaticResource BaselineTextStyle}"/>
+                <TextBlock TextWrapping="Wrap" Text="Please input number." Style="{StaticResource BaselineTextStyle}" Margin="10,0,0,0" Foreground="#DEBF0000" Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" VerticalAlignment="Bottom"/>
+            </StackPanel>
+        	<Slider Maximum="299" Minimum="10" Value="{Binding Height, Mode=TwoWay}"/>
         </StackPanel>
         <Grid x:Name="grid" Grid.Row="2" Margin="0,0,0,50">
             <Grid.RowDefinitions>
