@@ -23,7 +23,7 @@
             ItemsPath="Bookmarks"/>
     </Page.Resources>
 	<common:LayoutAwarePage.BottomAppBar>
-		<AppBar x:Name="appBar">
+		<AppBar x:Name="appBar" IsSticky="True">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
@@ -68,7 +68,7 @@
                     ItemTemplate="{StaticResource BookmarkLargeTemplate}"
                     SelectionMode="Single"
                     SelectionChanged="itemGridView_SelectionChanged"
-                    IsSwipeEnabled="false" IsItemClickEnabled="True" ItemClick="BookmarkItem_Click">
+                    IsSwipeEnabled="True" IsItemClickEnabled="True" ItemClick="BookmarkItem_Click">
 
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -104,7 +104,7 @@
                     ItemTemplate="{StaticResource CategoryZoomedOutTemplate}"
                     SelectionMode="Single"
                     SelectionChanged="itemGridView_SelectionChanged"
-                    IsSwipeEnabled="false" IsItemClickEnabled="True">
+                    IsSwipeEnabled="True" IsItemClickEnabled="True">
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>

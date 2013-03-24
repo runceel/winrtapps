@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="45014okazuki.56236D27A4053" Publisher="CN=57A8C5FA-395A-4109-91A0-CF1B93556B5D" Version="1.0.0.7" />
+  <Identity Name="45014okazuki.56236D27A4053" Publisher="CN=57A8C5FA-395A-4109-91A0-CF1B93556B5D" Version="1.0.0.10" />
   <Properties>
     <DisplayName>ブックマーカー</DisplayName>
     <PublisherDisplayName>okazuki</PublisherDisplayName>

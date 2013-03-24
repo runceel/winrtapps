@@ -24,9 +24,13 @@ namespace Okazuki.Bookmarker
     /// </summary>
     public sealed partial class BrowsePage : Okazuki.Bookmarker.Common.LayoutAwarePage
     {
+        private WebViewBrush webViewBrush = new WebViewBrush();
+
         public BrowsePage()
         {
             this.InitializeComponent();
+            this.webViewBrush.SourceName = this.webView.Name;
+            this.border.Background = this.webViewBrush;
         }
 
         /// <summary>
@@ -75,5 +79,15 @@ namespace Okazuki.Bookmarker
             await Launcher.LaunchUriAsync(bookmark.Uri);
         }
 
+        private void AppBar_Closed(object sender, object e)
+        {
+            VisualStateManager.GoToState(this, "Closed", false);
+        }
+
+        private void AppBar_Opened(object sender, object e)
+        {
+            this.webViewBrush.Redraw();
+            VisualStateManager.GoToState(this, "Opened", false);
+        }
     }
 }

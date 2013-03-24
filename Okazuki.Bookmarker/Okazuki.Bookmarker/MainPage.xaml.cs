@@ -2,20 +2,12 @@
 using Okazuki.UI.Flyouts;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // グループ化されたアイテム ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234231 を参照してください
 
@@ -46,6 +38,7 @@ namespace Okazuki.Bookmarker
             await model.LoadAsync();
             this.DefaultViewModel["Groups"] = model.Categories;
             this.groupedItemsViewSource.View.MoveCurrentTo(null);
+            this.AppBarButtonSetup();
         }
 
         private async void BookmarkItem_Click(object sender, ItemClickEventArgs e)
@@ -92,9 +85,9 @@ namespace Okazuki.Bookmarker
             var model = BookmarkerModel.GetDefault();
             var view = new AddBookmarkView();
 
-            var border = new Border 
-            { 
-                BorderThickness = new Thickness(1), 
+            var border = new Border
+            {
+                BorderThickness = new Thickness(1),
                 BorderBrush = new SolidColorBrush(Colors.White),
                 Width = view.MinWidth,
                 Height = view.MinHeight
@@ -132,6 +125,8 @@ namespace Okazuki.Bookmarker
 
             if (semanticZoom.IsZoomedInViewActive)
             {
+                this.BottomAppBar.IsOpen = groupedItemsViewSource.View.CurrentItem != null;
+
                 if (groupedItemsViewSource.View.CurrentItem == null)
                 {
                     return;
@@ -139,9 +134,12 @@ namespace Okazuki.Bookmarker
 
                 this.buttonEditBookmark.Visibility = Visibility.Visible;
                 this.buttonDeleteBookmark.Visibility = Visibility.Visible;
+
             }
             else
             {
+                this.BottomAppBar.IsOpen = itemGridZoomedOutView.SelectedItem != null;
+
                 if (itemGridZoomedOutView.SelectedItem == null)
                 {
                     return;
